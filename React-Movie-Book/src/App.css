@@ -1,0 +1,19 @@
+.App{
+    text-align: center;
+}
+
+#info-box, #loading-box, #error-box {
+    width: 80%;
+    margin: 10px auto;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+    display: none;
+    cursor: pointer;
+
+}
+
+#main {
+    margin: 0 10px 20px 10px;
+}

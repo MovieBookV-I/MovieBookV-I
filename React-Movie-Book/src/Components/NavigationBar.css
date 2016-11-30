@@ -1,0 +1,13 @@
+
+
+.navigation-bar a{
+    margin: 1em;
+    top: 1em;
+    padding: 0.5em;
+    text-decoration: none;
+}
+
+.navigation-bar .loggedInUser {
+    float: right;
+    margin-right: 10px;
+}
