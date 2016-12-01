@@ -5,6 +5,7 @@ import '../public/bootstrap-3.3.7-dist/css/bootstrap-theme.css'
 
 import $ from 'jquery';
 import KinveyRequester from './KinveyRequester';
+import {Link} from 'react-router'
 
 import NavigationBar from './Components/NavigationBar';
 import Footer from './Components/Footer';
@@ -38,13 +39,18 @@ export default class App extends Component {
                         showMoviesClicked={this.showMoviesView.bind(this)}
                         createMovieClicked={this.showCreateMovieView.bind(this)}
                         logoutClicked={this.logout.bind(this)}
-                    />
-                    <div id="loading-box" className="alert-info">Loading...</div>
-                    <div id="info-box" className="alert-success">Info</div>
-                    <div id="error-box" className="alert-danger">Error</div>
+                    >
+                    </NavigationBar>
+                    <div className="container">
+                        <div id="loading-box" className="alert-info">Loading...</div>
+                        <div id="info-box" className="alert-success">Info</div>
+                        <div id="error-box" className="alert-danger">Error</div>
+                    </div>
                 </header>
 
-                <div id="main" className="jumbotron"></div>
+
+
+                <div id="main"></div>
                 <Footer />
             </div>
         );
@@ -151,8 +157,21 @@ export default class App extends Component {
 
 
 
-    showMoviesView(){
-        this.showView(<MoviesView />);
+    showMoviesView() {
+        KinveyRequester.findAllMovies()
+            .then(loadMoviesSuccess.bind(this));
+
+        function loadMoviesSuccess(movies) {
+            this.showInfo("Movies loaded.");
+            this.showView(
+                <MoviesView
+                    movies={movies}
+                    userId={this.state.userId}
+                    editMovieClicked={this.prepareMovieForEdit.bind(this)}
+                    deleteBookClicked={this.confirmMovieDelete.bind(this)}
+                />
+            );
+        }
     }
 
     showCreateMovieView(){

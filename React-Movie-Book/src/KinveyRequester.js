@@ -21,7 +21,6 @@ let KinveyRequester = (function () {
 
    function registerUser(username, password, confirmPassword, email){
        if(password === confirmPassword && password.length >= 6) {
-           alert("IFA mina");
            return $.ajax({
                method: "POST",
                url: base_url + "user/" + app_id,
@@ -33,10 +32,26 @@ let KinveyRequester = (function () {
            $('#error-box').show().test("Invalid credentials"); //TODO
        }
    }
+   
+   function findAllMovies() {
+       return $.ajax({
+           method: "GET",
+           url: base_url + "appdata/" + app_id + "/movies",
+           headers: getUserAuthHeaders()
+       });
+   }
+
+    function getUserAuthHeaders(){
+        return {
+            'Authorization': "Kinvey " + sessionStorage.getItem('authToken'),
+        };
+    }
+
 
    return {
        loginUser,
-       registerUser
+       registerUser,
+       findAllMovies
    }
 })();
 
