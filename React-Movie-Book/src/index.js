@@ -8,8 +8,10 @@ import LoginView from './Views/LoginView';
 
 ReactDOM.render(
     <Router history={hashHistory}>
-        <Route path="/" component={App}/>
-        <Route path="login" component={LoginView}/>
+        <Route path="/" component={App}>
+            <Route path="login" component={LoginView}/>
+        </Route>
+
     </Router>,document.getElementById('app')
 );
 

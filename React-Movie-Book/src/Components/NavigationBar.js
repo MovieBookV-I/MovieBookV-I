@@ -18,7 +18,7 @@ export default class NavigationBar extends Component{
                                 <div className="navigation-bar">
                                     {this.props.children}
                                     <a className="btn btn-success" onClick={this.props.homeClicked} href="#">Home</a>
-                                    <Link to="/login" className="btn btn-success" onClick={this.props.loginClicked}> Login </Link> //TODO: Само този линк е със routing
+                                    <Link to="/login" className="btn btn-success" onClick={this.props.loginClicked}> Login </Link>
                                     <a className="btn btn-success" onClick={this.props.registerClicked} href="#">Register</a>
                                 </div>
                             </div>

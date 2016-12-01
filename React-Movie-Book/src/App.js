@@ -28,6 +28,7 @@ export default class App extends Component {
 
 
     render() {
+
         return (
             <div className="App">
                 <header>
@@ -40,6 +41,7 @@ export default class App extends Component {
                         createMovieClicked={this.showCreateMovieView.bind(this)}
                         logoutClicked={this.logout.bind(this)}
                     >
+                        <Link to="/login" className="btn btn-danger" onClick={this.props.loginClicked}> Login </Link>
                     </NavigationBar>
                     <div className="container">
                         <div id="loading-box" className="alert-info">Loading...</div>
@@ -50,7 +52,9 @@ export default class App extends Component {
 
 
 
-                <div id="main"></div>
+                <div id="main">
+                    {this.props.children}
+                </div>
                 <Footer />
             </div>
         );
@@ -61,7 +65,7 @@ export default class App extends Component {
 
         $(document).on(
             {
-                ajaxStart: function(){$('#loading-box').show()},
+                    Start: function(){$('#loading-box').show()},
                 ajaxStop: function(){$('#loading-box').hide()}
             }
         );
