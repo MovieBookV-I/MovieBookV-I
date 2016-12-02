@@ -5,7 +5,6 @@ import '../public/bootstrap-3.3.7-dist/css/bootstrap-theme.css'
 
 import $ from 'jquery';
 import KinveyRequester from './KinveyRequester';
-import {Link} from 'react-router'
 
 import NavigationBar from './Components/NavigationBar';
 import Footer from './Components/Footer';
@@ -40,17 +39,13 @@ export default class App extends Component {
                         showMoviesClicked={this.showMoviesView.bind(this)}
                         createMovieClicked={this.showCreateMovieView.bind(this)}
                         logoutClicked={this.logout.bind(this)}
-                    >
-                        <Link to="/login" className="btn btn-danger" onClick={this.props.loginClicked}> Login </Link>
-                    </NavigationBar>
+                    />
                     <div className="container">
                         <div id="loading-box" className="alert-info">Loading...</div>
                         <div id="info-box" className="alert-success">Info</div>
                         <div id="error-box" className="alert-danger">Error</div>
                     </div>
                 </header>
-
-
 
                 <div id="main">
                     {this.props.children}
@@ -114,7 +109,7 @@ export default class App extends Component {
         );
         $('#error-box').hide();
     }
-    //TODO:ROUTING!!!
+
     showHomeView(){
         this.showView(<HomeView username={this.state.username}/>)
     }
@@ -125,13 +120,15 @@ export default class App extends Component {
 
     login(username, password){
         KinveyRequester.loginUser(username, password).then(loginSuccess.bind(this));
-        
+
         function loginSuccess(userInfo) {
             this.saveAuthInSession(userInfo);
             this.showInfo("Login successful");
             this.showMoviesView();
         }
     }
+
+
 
     register(username, password, confirmPassword, email){
         KinveyRequester.registerUser(username, password, confirmPassword, email).then(registerSuccess.bind(this));
@@ -166,13 +163,15 @@ export default class App extends Component {
             .then(loadMoviesSuccess.bind(this));
 
         function loadMoviesSuccess(movies) {
+            //TODO
             this.showInfo("Movies loaded.");
             this.showView(
                 <MoviesView
-                    movies={movies}
-                    userId={this.state.userId}
-                    editMovieClicked={this.prepareMovieForEdit.bind(this)}
-                    deleteBookClicked={this.confirmMovieDelete.bind(this)}
+                    //movies={movies}
+                    //userId={this.state.userId}
+                    //editMovieClicked={this.prepareMovieForEdit.bind(this)}
+                    //deleteBookClicked={this.confirmMovieDelete.bind(this)}
+
                 />
             );
         }

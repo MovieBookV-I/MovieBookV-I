@@ -17,9 +17,9 @@ export default class NavigationBar extends Component{
                             <div className="col-md-8">
                                 <div className="navigation-bar">
                                     {this.props.children}
-                                    <a className="btn btn-success" onClick={this.props.homeClicked} href="#">Home</a>
+                                    <Link to="/home" className="btn btn-success" onClick={this.props.homeClicked}> Home </Link>
                                     <Link to="/login" className="btn btn-success" onClick={this.props.loginClicked}> Login </Link>
-                                    <a className="btn btn-success" onClick={this.props.registerClicked} href="#">Register</a>
+                                    <Link to="/register" className="btn btn-success" onClick={this.props.registerClicked}> Register </Link>
                                 </div>
                             </div>
                         </div>
@@ -35,10 +35,10 @@ export default class NavigationBar extends Component{
                             <div className="col-md-2"></div>
                             <div className="col-md-8">
                                 <div className="navigation-bar">
-                                    <a className="btn btn-success" onClick={this.props.homeClicked} href="#">Home</a>
-                                    <a className="btn btn-success" onClick={this.props.showMoviesClicked} href="#">Show Movies</a>
-                                    <a className="btn btn-success" onClick={this.props.createMovieClicked} href="#">Create Movie topic</a>
-                                    <a className="btn btn-success" onClick={this.props.logoutClicked} href="#">Logout</a>
+                                    <Link to="/home" className="btn btn-success" onClick={this.props.homeClicked}> Home </Link>
+                                    <Link to="/showMovies" className="btn btn-success" onClick={this.props.showMoviesClicked}> Show Movies </Link>
+                                    <Link to="/createMovie" className="btn btn-success" onClick={this.props.createMovieClicked}> Create Movie topic </Link>
+                                    <Link to="/home" className="btn btn-success" onClick={this.props.logoutClicked}> Logout </Link>
                                     <span className="loggedInUser">Welcome, {this.props.username}!</span>
                                 </div>
                             </div>
