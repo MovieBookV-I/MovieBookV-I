@@ -32,6 +32,16 @@ let KinveyRequester = (function () {
            $('#error-box').show().test("Invalid credentials"); //TODO
        }
    }
+
+   function createMovie(movieName, directorName, posterUrl, movieReview) {
+       return $.ajax({
+           method: "POST",
+           url: base_url + "appdata/" + app_id + "/movies",
+           headers: getUserAuthHeaders(),
+           data: JSON.stringify({movieName, directorName, posterUrl, movieReview}),
+           contentType: "application/json"
+       })
+   }
    
    function findAllMovies() {
        return $.ajax({
@@ -51,6 +61,7 @@ let KinveyRequester = (function () {
    return {
        loginUser,
        registerUser,
+       createMovie,
        findAllMovies
    }
 })();

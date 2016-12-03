@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router';
 import './App.css';
 import '../public/bootstrap-3.3.7-dist/css/bootstrap-theme.css'
 
@@ -115,7 +116,7 @@ export default class App extends Component {
     }
 
     showLoginView(){
-        this.showView(<LoginView onsubmit={this.login.bind(this)} />);
+        this.showView(<LoginView onsubmit={this.login.bind(this)}/>);
     }
 
     login(username, password){
@@ -157,29 +158,39 @@ export default class App extends Component {
     }
 
 
+    showCreateMovieView(){
+        this.showView(<CreateMovieView onsubmit={this.createMovie.bind(this)} />);
+    }
+
+    createMovie(movieName, directorName, posterUrl, movieReview){
+        KinveyRequester.createMovie(movieName, directorName, posterUrl, movieReview).then(createMovieSuccess.bind(this));
+
+        function createMovieSuccess(response){
+            this.showInfo("Movie Created");
+            this.showMoviesView();
+        }
+    }
+
 
     showMoviesView() {
         KinveyRequester.findAllMovies()
             .then(loadMoviesSuccess.bind(this));
 
         function loadMoviesSuccess(movies) {
-            //TODO
+
             this.showInfo("Movies loaded.");
             this.showView(
                 <MoviesView
-                    //movies={movies}
-                    //userId={this.state.userId}
+                    movies={movies}
+                    userId={this.state.userId}
                     //editMovieClicked={this.prepareMovieForEdit.bind(this)}
                     //deleteBookClicked={this.confirmMovieDelete.bind(this)}
-
+                    //TODO
                 />
             );
         }
     }
 
-    showCreateMovieView(){
-        this.showView(<CreateMovieView />);
-    }
 
     logout(){
         sessionStorage.clear();
