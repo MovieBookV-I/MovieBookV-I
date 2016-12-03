@@ -1,0 +1,51 @@
+.homepage-movie{
+
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+    border: 1px solid #d0d2cf;
+    font-family: Verdana, sans-serif;
+    border-radius: 5px;
+    width: auto;
+    padding: 10px;
+    box-shadow: 5px 5px 5px #888888;
+    margin-left: 30px;
+    color: #404040;
+}
+.fav-images img {
+
+    width: 250px;
+    height: 330px;
+    margin: 8px;
+}
+
+.jumbotron{
+    padding: 20px;
+    margin-bottom: 15px;
+ }
+/*register*/
+.control-label{
+    font-size: 15px;
+    line-height: 1.7em;
+}
+.form-group{
+    width: 55%;
+
+}
+.btn-primary{
+    background-color: #5cb85c;
+}
+
+/*movieview*/
+
+.movieview {
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+    border: 1px solid #d0d2cf;
+    font-family: Verdana, sans-serif;
+    border-radius: 5px;
+    width: auto;
+    padding: 10px 30px 10px 10px;
+    box-shadow: 5px 5px 3px #888888;
+    color: #404040;
+    margin-bottom: 20px;
+}
