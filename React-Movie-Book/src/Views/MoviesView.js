@@ -6,7 +6,7 @@ export default class MoviesView extends Component{
     render(){
 
         let movies = this.props.movies.map(movie =>
-         <div>
+         <div key={movie._id}>
              <div className="movieView">
                 <div className="row">
                     <div className="col-md-4">
@@ -22,14 +22,14 @@ export default class MoviesView extends Component{
                         <br/>
                         <br/>
                         <div><strong>Review: </strong>{movie.movieReview}
-                        <button className="btn-sm btn-info">More info</button>
+
                         </div>
                     </div>
                 </div>
              </div>
          </div>
         );
-        console.log(movies);
+
         return (
            <div className="container">
                <div className="jumbotron">
@@ -39,6 +39,28 @@ export default class MoviesView extends Component{
                </div>
            </div>
         );
-
     }
+
+    ///     //<div>
+            //    {this.getMovieActions(movie, this.props.userId)}
+            //</div>-->
+
+    //getMovieActions(movie, userId) {
+    //    if (movie._acl.creator === userId)
+    //        return (
+    //            <div>
+    //                <input type="button" value="More info" className="btn btn-danger"
+    //                       onClick={this.props.moreInfoMovieClicked.bind(this, movie._id)} />
+    //                &nbsp;
+    //                <input type="button" value="Delete" className="btn btn-danger"
+    //                       onClick={this.props.deleteMovieClicked.bind(this, movie._id)} />
+    //                &nbsp;
+    //                <input type="button" value="Delete" className="btn btn-danger"
+    //                       onClick={this.props.deleteMovieClicked.bind(this, movie._id)} />
+//
+    //            </div>
+    //        );
+    //    else
+    //        return <div></div>;
+    //}
 }

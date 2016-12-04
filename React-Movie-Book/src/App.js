@@ -184,8 +184,7 @@ export default class App extends Component {
                     movies={movies}
                     userId={this.state.userId}
                     //editMovieClicked={this.prepareMovieForEdit.bind(this)}
-                    //deleteBookClicked={this.confirmMovieDelete.bind(this)}
-                    //TODO
+                   //deleteMovieClicked={this.confirmMovieDelete.bind(this)}
                 />
             );
         }
