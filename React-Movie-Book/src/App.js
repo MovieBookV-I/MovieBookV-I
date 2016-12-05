@@ -51,7 +51,7 @@ export default class App extends Component {
                 </header>
 
                 <div id="main">
-                    {this.props.children}
+
                 </div>
                 <Footer />
             </div>
