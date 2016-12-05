@@ -22,7 +22,9 @@ export default class MoviesView extends Component{
                         <br/>
                         <br/>
                         <div><strong>Review: </strong>{movie.movieReview}
-
+                            <div>
+                                {this.getMovieActions(movie, this.props.userId)}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,26 +43,24 @@ export default class MoviesView extends Component{
         );
     }
 
-    ///     //<div>
-            //    {this.getMovieActions(movie, this.props.userId)}
-            //</div>-->
 
-    //getMovieActions(movie, userId) {
-    //    if (movie._acl.creator === userId)
-    //        return (
-    //            <div>
-    //                <input type="button" value="More info" className="btn btn-danger"
-    //                       onClick={this.props.moreInfoMovieClicked.bind(this, movie._id)} />
-    //                &nbsp;
-    //                <input type="button" value="Delete" className="btn btn-danger"
-    //                       onClick={this.props.deleteMovieClicked.bind(this, movie._id)} />
-    //                &nbsp;
-    //                <input type="button" value="Delete" className="btn btn-danger"
-    //                       onClick={this.props.deleteMovieClicked.bind(this, movie._id)} />
-//
-    //            </div>
-    //        );
-    //    else
-    //        return <div></div>;
-    //}
+
+    getMovieActions(movie, userId) {
+        if (movie._acl.creator === userId)
+            return (
+                <div>
+                    <input type="button" value="More info" className="btn btn-success"
+                           onClick={this.props.onedit.bind(this, movie._id)} />
+                    &nbsp;
+                    <input type="button" value="Edit Movie" className="btn btn-success"
+                           onClick={this.props.onedit.bind(this, movie._id)} />
+                    &nbsp;
+                    <input type="button" value="Delete" className="btn btn-danger"
+                           onClick={this.props.ondelete.bind(this, movie._id)} />
+
+                </div>
+            );
+        else
+            return <div></div>;
+    }
 }

@@ -15,6 +15,8 @@ import LoginView from './Views/LoginView';
 import RegisterView from './Views/RegisterView';
 import MoviesView from './Views/MoviesView';
 import CreateMovieView from './Views/CreateMovieView';
+import EditMovieView from './Views/EditMovieView';
+import DeleteMovieView from './Views/DeleteMovieView';
 
 
 export default class App extends Component {
@@ -183,13 +185,69 @@ export default class App extends Component {
                 <MoviesView
                     movies={movies}
                     userId={this.state.userId}
-                    //editMovieClicked={this.prepareMovieForEdit.bind(this)}
-                   //deleteMovieClicked={this.confirmMovieDelete.bind(this)}
+                    onedit={this.loadMovieForEdit.bind(this)}
+                    ondelete={this.loadMovieForDelete.bind(this)}
+
                 />
             );
         }
     }
 
+    loadMovieForEdit(movieId){
+        KinveyRequester.findMovieById(movieId)
+            .then(findMovieSuccess.bind(this));
+
+        function findMovieSuccess(movie) {
+            let editMovieView = <EditMovieView
+                movieId={movie._id}
+                movieName={movie.movieName}
+                directorName={movie.directorName}
+                posterUrl={movie.posterUrl}
+                movieReview={movie.movieReview}
+                onsubmit={this.editMovie.bind(this)}
+            />;
+            this.showView(editMovieView);
+        }
+    }
+
+    loadMovieForDelete(movieId){
+        KinveyRequester.findMovieById(movieId)
+            .then(findMovieSuccess.bind(this));
+
+        function findMovieSuccess(movie) {
+            console.log(movie);
+            this.showView(
+                <DeleteMovieView
+                    onsubmit={this.deleteMovie.bind(this)}
+                    movieId={movie._id}
+                    movieName={movie.movieName}
+                    directorName={movie.directorName}
+                    posterUrl={movie.posterUrl}
+                    movieReview={movie.movieReview}
+                />);
+        }
+    }
+
+
+    editMovie(movieId, movieName, directorName, posterUrl, movieReview){
+        KinveyRequester.editMovie(movieId, movieName, directorName, posterUrl, movieReview)
+            .then(editMovieSuccess.bind(this));
+
+        function editMovieSuccess(response){
+            this.showInfo("Movie Edited");
+            this.showMoviesView();
+        }
+    }
+
+    deleteMovie(movieId){
+        KinveyRequester.deleteMovie(movieId)
+            .then(editMovieSuccess.bind(this));
+
+        function editMovieSuccess(response){
+            this.showInfo("Movie Edited");
+            this.showMoviesView();
+        }
+    }
 
     logout(){
         sessionStorage.clear();

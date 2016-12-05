@@ -34,14 +34,34 @@ let KinveyRequester = (function () {
    }
 
    function createMovie(movieName, directorName, posterUrl, movieReview) {
-       return $.ajax({
-           method: "POST",
-           url: base_url + "appdata/" + app_id + "/movies",
-           headers: getUserAuthHeaders(),
-           data: JSON.stringify({movieName, directorName, posterUrl, movieReview}),
-           contentType: "application/json"
-       })
-   }
+        return $.ajax({
+            method: "POST",
+            url: base_url + "appdata/" + app_id + "/movies",
+            headers: getUserAuthHeaders(),
+            data: JSON.stringify({movieName, directorName, posterUrl, movieReview}),
+            contentType: "application/json"
+        })
+    }
+
+    function editMovie(movieId, movieName, directorName, posterUrl, movieReview) {
+        return $.ajax({
+            method: "PUT",
+            url: base_url + "appdata/" + app_id + "/movies/" + movieId,
+            headers: getUserAuthHeaders(),
+            data: JSON.stringify({movieName, directorName, posterUrl, movieReview}),
+            contentType: "application/json"
+        });
+    }
+
+    function deleteMovie(movieId) {
+        return $.ajax({
+            method: "DELETE",
+            url: base_url + "appdata/" + app_id + "/movies/" + movieId,
+            headers: getUserAuthHeaders()
+        });
+    }
+
+
    
    function findAllMovies() {
        return $.ajax({
@@ -49,6 +69,14 @@ let KinveyRequester = (function () {
            url: base_url + "appdata/" + app_id + "/movies",
            headers: getUserAuthHeaders()
        });
+   }
+   
+   function findMovieById(movieId) {
+       return $.ajax({
+           method: "GET",
+           url: base_url + "appdata/" + app_id + "/movies/" + movieId,
+           headers: getUserAuthHeaders()
+       })
    }
 
     function getUserAuthHeaders(){
@@ -62,7 +90,10 @@ let KinveyRequester = (function () {
        loginUser,
        registerUser,
        createMovie,
-       findAllMovies
+       editMovie,
+       deleteMovie,
+       findAllMovies,
+       findMovieById
    }
 })();
 
