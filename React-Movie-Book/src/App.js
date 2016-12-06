@@ -175,11 +175,9 @@ export default class App extends Component {
 
     createMovie(movieName, directorName, posterUrl, movieReview){
         KinveyRequester.createMovie(movieName, directorName, posterUrl, movieReview)
-            //.then(() => KinveyRequester.firstLike(movieName))
-            .then(createMovieSuccess.bind(this)); //TODO
+                .then(createMovieSuccess.bind(this));
 
         function createMovieSuccess(){
-            //KinveyRequester.firstLike(movieName);
             this.showInfo("Movie Created");
             this.showMoviesView();
         }
@@ -199,15 +197,12 @@ export default class App extends Component {
                     userId={this.state.userId}
                     onedit={this.loadMovieForEdit.bind(this)}
                     ondelete={this.loadMovieForDelete.bind(this)}
-                    //onclick={this.likeMovie.bind(this)}
                 />
             );
         }
     }
 
-   //likeMovie(movieId){
-   //    KinveyRequester.likeMovie(movieId)
-   //}
+
 
     //loadMovieForMovieWall(movieId){
     //    KinveyRequester.findMovieById(movieId)

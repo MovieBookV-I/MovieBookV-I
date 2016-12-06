@@ -2,11 +2,10 @@
     font-size: 15px;
     line-height: 1.7em;
 }
-
 .form-group{
     width: 55%;
-}
 
-form {
-    text-align: left;
+}
+.btn-primary{
+    background-color: #5cb85c;
 }
