@@ -61,8 +61,6 @@ let KinveyRequester = (function () {
         });
     }
 
-
-   
    function findAllMovies() {
        return $.ajax({
            method: "GET",
@@ -97,35 +95,6 @@ let KinveyRequester = (function () {
         };
     }
 
-
-  //function likeMovie(movieId) {
-  //    let dataForLikes = {
-  //        movieId: movieId,
-
-  //    };
-
-  //    return {
-  //        method: "POST",
-  //        url: base_url + "appdata/" + app_id + "/likes",
-  //        headers: getUserAuthHeaders()
-  //    }
-  //}
-
-    //function firstLike(movieName){
-    //    let dataForFirstLike = {
-    //        movieName: movieName,
-    //        likes: "0"
-    //    };
-//
-    //    return {
-    //        method: "POST",
-    //        url: base_url + "appdata/" + app_id + "/likes",
-    //        headers: getUserAuthHeaders(),
-    //        data:JSON.stringify(dataForFirstLike)
-    //    }
-    //}
-
-
    return {
        loginUser,
        registerUser,
@@ -134,8 +103,6 @@ let KinveyRequester = (function () {
        deleteMovie,
        findAllMovies,
        findMovieById,
-       //firstLike,
-       //likeMovie,
        findAllMoviesWithoutLogin
    }
 })();
