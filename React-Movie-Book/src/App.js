@@ -19,7 +19,6 @@ import EditMovieView from './Views/EditMovieView';
 import DeleteMovieView from './Views/DeleteMovieView';
 
 
-
 export default class App extends Component {
     constructor(props){
         super(props);
@@ -28,10 +27,7 @@ export default class App extends Component {
             userId: null
         }
     }
-
-
     render() {
-
         return (
             <div className="App">
                 <header>
@@ -58,8 +54,6 @@ export default class App extends Component {
             </div>
         );
     }
-
-
     componentDidMount(){
 
         $(document).on(
@@ -101,21 +95,15 @@ export default class App extends Component {
             $('#info-box').fadeOut();
         }, 3000);
     }
-
     showError(errorMsg) {
         $('#error-box').text("Error: " + errorMsg).show();
     }
-
-
     showView(reactComponent){
         ReactDOM.render(
             reactComponent, document.getElementById('main')
         );
         $('#error-box').hide();
     }
-
-
-
     showHomePageMovies(){
         KinveyRequester.findAllMoviesWithoutLogin().then(findMoviesSuccess.bind(this));
         function findMoviesSuccess(movies){
@@ -125,11 +113,9 @@ export default class App extends Component {
             />)
         }
     }
-
     showLoginView(){
         this.showView(<LoginView onsubmit={this.login.bind(this)}/>);
     }
-
     login(username, password){
         KinveyRequester.loginUser(username, password).then(loginSuccess.bind(this));
 
@@ -139,9 +125,6 @@ export default class App extends Component {
             this.showMoviesView();
         }
     }
-
-
-
     register(username, password, confirmPassword, email){
         KinveyRequester.registerUser(username, password, confirmPassword, email).then(registerSuccess.bind(this));
 
@@ -163,12 +146,9 @@ export default class App extends Component {
             userId: userInfo._id
         });
     }
-
     showRegisterView(){
         this.showView(<RegisterView onsubmit={this.register.bind(this)}/>);
     }
-
-
     showCreateMovieView(){
         this.showView(<CreateMovieView onsubmit={this.createMovie.bind(this)} />);
     }
@@ -182,8 +162,6 @@ export default class App extends Component {
             this.showMoviesView();
         }
     }
-
-
     showMoviesView() {
         KinveyRequester.findAllMovies()
             .then(loadMoviesSuccess.bind(this));
@@ -202,25 +180,6 @@ export default class App extends Component {
         }
     }
 
-
-
-    //loadMovieForMovieWall(movieId){
-    //    KinveyRequester.findMovieById(movieId)
-    //        .then(findMovieForMovieWallSuccess.bind(this));
-//
-    //    function findMovieForMovieWallSuccess(movie) {
-    //        let movieWallView = <MovieWall
-    //            movieId={movie._id}
-    //            movieName={movie.movieName}
-    //            directorName={movie.directorName}
-    //            posterUrl={movie.posterUrl}
-    //            movieReview={movie.movieReview}
-    //        />;
-    //        this.showView(movieWallView);
-    //    }
-    //}
-
-
     loadMovieForEdit(movieId){
         KinveyRequester.findMovieById(movieId)
             .then(findMovieSuccess.bind(this));
@@ -237,7 +196,6 @@ export default class App extends Component {
             this.showView(editMovieView);
         }
     }
-
     loadMovieForDelete(movieId){
         KinveyRequester.findMovieById(movieId)
             .then(findMovieSuccess.bind(this));
@@ -255,8 +213,6 @@ export default class App extends Component {
                 />);
         }
     }
-
-
     editMovie(movieId, movieName, directorName, posterUrl, movieReview){
         KinveyRequester.editMovie(movieId, movieName, directorName, posterUrl, movieReview)
             .then(editMovieSuccess.bind(this));
