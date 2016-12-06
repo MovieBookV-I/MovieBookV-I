@@ -9,7 +9,6 @@ export default class CreateMovieView extends Component {
                 <div className="container">
                     <div className="jumbotron">
                         <div className="row">
-
                             <div className="col-md-12">
                                 <div className="form-horizontal">
                                     <form className="create-movie-form" onSubmit={this.submitForm.bind(this)}>

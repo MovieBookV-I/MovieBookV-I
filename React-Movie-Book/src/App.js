@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router';
+
 import './App.css';
 import '../public/bootstrap-3.3.7-dist/css/bootstrap-theme.css'
 
@@ -17,6 +17,7 @@ import MoviesView from './Views/MoviesView';
 import CreateMovieView from './Views/CreateMovieView';
 import EditMovieView from './Views/EditMovieView';
 import DeleteMovieView from './Views/DeleteMovieView';
+
 
 
 export default class App extends Component {
@@ -36,7 +37,7 @@ export default class App extends Component {
                 <header>
                     <NavigationBar
                         username={this.state.username}
-                        homeClicked={this.showHomeView.bind(this)}
+                        homeClicked={this.showHomePageMovies.bind(this)}
                         loginClicked={this.showLoginView.bind(this)}
                         registerClicked={this.showRegisterView.bind(this)}
                         showMoviesClicked={this.showMoviesView.bind(this)}
@@ -63,7 +64,7 @@ export default class App extends Component {
 
         $(document).on(
             {
-                    Start: function(){$('#loading-box').show()},
+                ajaxStart: function(){$('#loading-box').show()},
                 ajaxStop: function(){$('#loading-box').hide()}
             }
         );
@@ -78,7 +79,7 @@ export default class App extends Component {
             userId: sessionStorage.getItem('userId')
         });
 
-        this.showHomeView();
+        this.showHomePageMovies();
 
         $('#error-box, #info-box').click(function () {
             $(this).hide();
@@ -113,8 +114,16 @@ export default class App extends Component {
         $('#error-box').hide();
     }
 
-    showHomeView(){
-        this.showView(<HomeView username={this.state.username}/>)
+
+
+    showHomePageMovies(){
+        KinveyRequester.findAllMoviesWithoutLogin().then(findMoviesSuccess.bind(this));
+        function findMoviesSuccess(movies){
+            this.showView(<HomeView
+                username={this.state.username}
+                movies={movies}
+            />)
+        }
     }
 
     showLoginView(){
@@ -165,9 +174,12 @@ export default class App extends Component {
     }
 
     createMovie(movieName, directorName, posterUrl, movieReview){
-        KinveyRequester.createMovie(movieName, directorName, posterUrl, movieReview).then(createMovieSuccess.bind(this));
+        KinveyRequester.createMovie(movieName, directorName, posterUrl, movieReview)
+            //.then(() => KinveyRequester.firstLike(movieName))
+            .then(createMovieSuccess.bind(this)); //TODO
 
-        function createMovieSuccess(response){
+        function createMovieSuccess(){
+            //KinveyRequester.firstLike(movieName);
             this.showInfo("Movie Created");
             this.showMoviesView();
         }
@@ -187,11 +199,32 @@ export default class App extends Component {
                     userId={this.state.userId}
                     onedit={this.loadMovieForEdit.bind(this)}
                     ondelete={this.loadMovieForDelete.bind(this)}
-
+                    //onclick={this.likeMovie.bind(this)}
                 />
             );
         }
     }
+
+   //likeMovie(movieId){
+   //    KinveyRequester.likeMovie(movieId)
+   //}
+
+    //loadMovieForMovieWall(movieId){
+    //    KinveyRequester.findMovieById(movieId)
+    //        .then(findMovieForMovieWallSuccess.bind(this));
+//
+    //    function findMovieForMovieWallSuccess(movie) {
+    //        let movieWallView = <MovieWall
+    //            movieId={movie._id}
+    //            movieName={movie.movieName}
+    //            directorName={movie.directorName}
+    //            posterUrl={movie.posterUrl}
+    //            movieReview={movie.movieReview}
+    //        />;
+    //        this.showView(movieWallView);
+    //    }
+    //}
+
 
     loadMovieForEdit(movieId){
         KinveyRequester.findMovieById(movieId)
@@ -257,7 +290,7 @@ export default class App extends Component {
             userId: null
         });
 
-        this.showHomeView();
+        this.showHomePageMovies();
     }
 }
 
