@@ -11,7 +11,6 @@ export default class DeleteMovieView extends Component {
                         <div className="row">
                             <div className="col-md-3"></div>
                             <div className="col-md-9">
-
                                     <form className="create-movie-form form-horizontal" onSubmit={this.submitForm.bind(this)}>
                                         <legend>Delete Movie:</legend>
                                         <h4>{this.props.movieName}</h4>
@@ -19,7 +18,6 @@ export default class DeleteMovieView extends Component {
                                             <input type="submit" className="btn-danger" value="Confirm Delete"/>
                                         </div>
                                     </form>
-
                             </div>
                         </div>
                     </div>
@@ -31,13 +29,9 @@ export default class DeleteMovieView extends Component {
 
     submitForm(event) {
         event.preventDefault();
-        this.props.onsubmit(
-            this.props.movieId,
-            this.movieNameField.value,
-            this.movieDirectorField.value,
-            this.posterUrlField.value,
-            this.MovieReviewField.value
-        );
+       this.props.onsubmit(
+           this.props.movieId
+       );
     }
 }
 
