@@ -228,7 +228,7 @@ export default class App extends Component {
             .then(editMovieSuccess.bind(this));
 
         function editMovieSuccess(response){
-            this.showInfo("Movie Edited");
+            this.showInfo("Movie Deleted");
             this.showMoviesView();
         }
     }
