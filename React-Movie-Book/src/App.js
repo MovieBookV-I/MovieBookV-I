@@ -17,6 +17,7 @@ import MoviesView from './Views/MoviesView';
 import CreateMovieView from './Views/CreateMovieView';
 import EditMovieView from './Views/EditMovieView';
 import DeleteMovieView from './Views/DeleteMovieView';
+import MovieWall from './Components/MovieWall';
 
 
 export default class App extends Component {
@@ -153,8 +154,8 @@ export default class App extends Component {
         this.showView(<CreateMovieView onsubmit={this.createMovie.bind(this)} />);
     }
 
-    createMovie(movieName, directorName, posterUrl, movieReview){
-        KinveyRequester.createMovie(movieName, directorName, posterUrl, movieReview)
+    createMovie(movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink){
+        KinveyRequester.createMovie(movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink)
                 .then(createMovieSuccess.bind(this));
 
         function createMovieSuccess(){
@@ -175,9 +176,28 @@ export default class App extends Component {
                     userId={this.state.userId}
                     onedit={this.loadMovieForEdit.bind(this)}
                     ondelete={this.loadMovieForDelete.bind(this)}
+                    onclick={this.moreInfoMovie.bind(this)}
                 />
             );
         }
+    }
+
+    moreInfoMovie(movieId){
+           KinveyRequester.findMovieById(movieId)
+               .then(findMovieForMovieWallSuccess.bind(this));
+           function findMovieForMovieWallSuccess(movie) {
+               let movieWallView = <MovieWall
+                   movieId={movie._id}
+                   movieName={movie.movieName}
+                   directorName={movie.directorName}
+                   posterUrl={movie.posterUrl}
+                   movieReview={movie.movieReview}
+                   movieCast={movie.movieCast}
+                   movieProducer={movie.movieProducer}
+                   imdbLink={movie.movieImdbLink}
+               />;
+               this.showView(movieWallView);
+           }
     }
 
     loadMovieForEdit(movieId){
@@ -191,6 +211,9 @@ export default class App extends Component {
                 directorName={movie.directorName}
                 posterUrl={movie.posterUrl}
                 movieReview={movie.movieReview}
+                movieCast={movie.movieCast}
+                movieProducer={movie.movieProducer}
+                movieImdbLink={movie.movieImdbLink}
                 onsubmit={this.editMovie.bind(this)}
             />;
             this.showView(editMovieView);
@@ -213,8 +236,8 @@ export default class App extends Component {
                 />);
         }
     }
-    editMovie(movieId, movieName, directorName, posterUrl, movieReview){
-        KinveyRequester.editMovie(movieId, movieName, directorName, posterUrl, movieReview)
+    editMovie(movieId, movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink){
+        KinveyRequester.editMovie(movieId, movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink)
             .then(editMovieSuccess.bind(this));
 
         function editMovieSuccess(response){

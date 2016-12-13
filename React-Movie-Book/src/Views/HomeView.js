@@ -16,29 +16,27 @@ export default class HomeView extends Component {
                                 <div className="homepage-movie">
                                     <img src={movie1.posterUrl} alt="poster"/>
                                     <div>{movie1.movieName}</div>
-                                    <div>Director: {movie1.directorName}</div>
+                                    <div><strong>Directed by:</strong> {movie1.directorName}</div>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="homepage-movie">
                                     <img src={movie2.posterUrl} alt="poster"/>
                                     <div>{movie2.movieName}</div>
-                                    <div>Director: {movie2.directorName}</div>
+                                    <div><strong>Directed by:</strong> {movie2.directorName}</div>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="homepage-movie">
                                     <img src={movie3.posterUrl} alt="poster"/>
                                     <div>{movie3.movieName}</div>
-                                    <div>Director: {movie3.directorName}</div>
+                                    <div><strong>Directed by:</strong> {movie3.directorName}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         );
     }
 }

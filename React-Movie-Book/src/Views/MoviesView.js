@@ -9,17 +9,16 @@ export default class MoviesView extends Component{
             <div key={movie._id}>
                 <div className="movieView">
                     <div className="row">
-
                         <div className="col-md-4">
                             <img src={movie.posterUrl} alt="poster"/>
                         </div>
                         <div className="col-md-8">
                             <br/>
                             <br/>
-                            <div><strong>Title: </strong>{movie.movieName}</div>
+                            <div><strong>Movie name: </strong>{movie.movieName}</div>
                             <br/>
                             <br/>
-                            <div><strong>Director: </strong>{movie.directorName}</div>
+                            <div><strong>Directed by: </strong>{movie.directorName}</div>
                             <br/>
                             <br/>
                             <div><strong>Review: </strong>{movie.movieReview}
@@ -51,6 +50,9 @@ export default class MoviesView extends Component{
         if (movie._acl.creator === userId)
             return (
                 <div>
+                    <input type="button" value="More info" className="btn btn-info"
+                           onClick={this.props.onclick.bind(this, movie._id)} />
+                    &nbsp;
                     <input type="button" value="Edit Movie" className="btn btn-success"
                            onClick={this.props.onedit.bind(this, movie._id)} />
                     &nbsp;
@@ -59,6 +61,9 @@ export default class MoviesView extends Component{
                 </div>
             );
         else
-            return <div></div>;
+            return <div>
+                <input type="button" value="More info" className="btn btn-info"
+                       onClick={this.props.onclick.bind(this, movie._id)} />
+            </div>;
     }
 }

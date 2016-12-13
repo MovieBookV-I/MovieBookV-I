@@ -14,7 +14,7 @@ export default class EditMovieView extends Component {
                                 <fieldset>
                                     <legend>Edit Movie:</legend>
                                     <div className="form-group">
-                                        <label for="title" className="col-lg-3 control-label">Title:</label>
+                                        <label className="col-lg-3 control-label">Movie name</label>
                                         <div className="col-lg-9">
                                             <input type="text" name="movieName" className="form-control"
                                                    defaultValue={this.props.movieName}
@@ -23,29 +23,53 @@ export default class EditMovieView extends Component {
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="director" className="col-lg-3 control-label">Director:</label>
+                                        <label className="col-lg-3 control-label">Directed by</label>
                                         <div className="col-lg-9">
-                                                    <input type="text" name="movieDirector" className="form-control"
+                                                    <input type="text" name="movieDirector" className="form-control" placeholder="Directed by" required
                                                            defaultValue={this.props.directorName}
                                                            ref={e => this.movieDirectorField = e}/>
                                             <br/>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="photo" className="col-lg-3 control-label">Poster URL:</label>
+                                        <label className="col-lg-3 control-label">Poster URL</label>
                                         <div className="col-lg-9">
-                                                    <input type="text" name="posterUrl" className="form-control"
+                                                    <input type="text" name="posterUrl" className="form-control" placeholder="Poster URL" required
                                                            defaultValue={this.props.posterUrl}
                                                            ref={e => this.posterUrlField = e}/>
                                             <br/>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="summary" className="col-lg-3 control-label">Review:</label>
+                                        <label className="col-lg-3 control-label">Review</label>
                                         <div className="col-lg-9">
-                                                        <textarea name="MovieReview" rows="2" className="form-control"
+                                                        <textarea name="MovieReview" rows="2" className="form-control" placeholder="Review" required
                                                                   defaultValue={this.props.movieReview}
                                                                   ref={e => this.MovieReviewField = e}/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col-lg-3 control-label">Cast</label>
+                                        <div className="col-lg-9">
+                                            <textarea name="movieCast" rows="2" className="form-control" placeholder="Cast" required
+                                                      defaultValue={this.props.movieCast}
+                                                      ref={e => this.CastMovieField = e}/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col-lg-3 control-label">Produced by</label>
+                                        <div className="col-lg-9">
+                                            <input type="text" name="movieProducer" className="form-control" placeholder="Produced by" required
+                                                   defaultValue={this.props.movieProducer}
+                                                   ref={e => this.ProducerMovieField = e}/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col-lg-3 control-label">IMBD Link</label>
+                                        <div className="col-lg-9">
+                                            <input type="text" name="movieImdbLink" className="form-control" placeholder="IMDB Link" required
+                                                   defaultValue={this.props.movieImdbLink}
+                                                   ref={e => this.ImdbLinkField = e}/>
                                         </div>
                                     </div>
                                     <div className="form-group">
@@ -71,7 +95,10 @@ export default class EditMovieView extends Component {
             this.movieNameField.value,
             this.movieDirectorField.value,
             this.posterUrlField.value,
-            this.MovieReviewField.value
+            this.MovieReviewField.value,
+            this.CastMovieField.value,
+            this.ProducerMovieField.value,
+            this.ImdbLinkField.value
         );
     }
 }

@@ -44,11 +44,9 @@ export default class RegisterView extends Component {
                                                    ref={e => this.emailField = e} />
                                         </div>
                                     </div>
-
-
                                     <div className="form-group">
                                         <div className="col-lg-10 col-lg-offset-2">
-                                            <button type="submit" className="btn btn-success">Submit</button>
+                                            <button type="submit" className="btn btn-success">Register</button>
                                         </div>
                                     </div>
                                 </fieldset>

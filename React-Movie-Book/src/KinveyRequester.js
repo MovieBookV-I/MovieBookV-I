@@ -33,22 +33,22 @@ let KinveyRequester = (function () {
        }
    }
 
-   function createMovie(movieName, directorName, posterUrl, movieReview) {
+   function createMovie(movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink) {
         return $.ajax({
             method: "POST",
             url: base_url + "appdata/" + app_id + "/movies",
             headers: getUserAuthHeaders(),
-            data: JSON.stringify({movieName, directorName, posterUrl, movieReview}),
+            data: JSON.stringify({movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink}),
             contentType: "application/json"
         })
     }
 
-    function editMovie(movieId, movieName, directorName, posterUrl, movieReview) {
+    function editMovie(movieId, movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink) {
         return $.ajax({
             method: "PUT",
             url: base_url + "appdata/" + app_id + "/movies/" + movieId,
             headers: getUserAuthHeaders(),
-            data: JSON.stringify({movieName, directorName, posterUrl, movieReview}),
+            data: JSON.stringify({movieName, directorName, posterUrl, movieReview, movieCast, movieProducer, movieImdbLink}),
             contentType: "application/json"
         });
     }
