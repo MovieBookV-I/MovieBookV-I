@@ -13,7 +13,7 @@ export default class RegisterView extends Component {
                                 <fieldset>
                                     <legend>Register</legend>
                                     <div className="form-group">
-                                        <label for="username" className="col-lg-2 control-label">Username</label>
+                                        <label className="col-lg-2 control-label">Username</label>
                                         <div className="col-lg-10">
                                             <input type="text" name="username" className="form-control" placeholder="User name" required
                                                    ref={e => this.usernameField = e} />
@@ -21,7 +21,7 @@ export default class RegisterView extends Component {
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="inputPassword" className="col-lg-2 control-label">Password</label>
+                                        <label className="col-lg-2 control-label">Password</label>
                                         <div className="col-lg-10">
                                             <input type="password" name="password" className="form-control" placeholder="Password" required
                                                    ref={e => this.passwordField = e} />
@@ -30,7 +30,7 @@ export default class RegisterView extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label for="inputPassword" className="col-lg-2 control-label">Confirm password</label>
+                                        <label className="col-lg-2 control-label">Confirm password</label>
                                         <div className="col-lg-10">
                                             <input type="password" name="confirmPassword" className="form-control" placeholder="Password" required
                                                    ref={e => this.confirmPasswordField = e} />
@@ -38,7 +38,7 @@ export default class RegisterView extends Component {
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="email" className="col-lg-2 control-label">Email</label>
+                                        <label className="col-lg-2 control-label">Email</label>
                                         <div className="col-lg-10">
                                             <input type="email" name="email" className="form-control" placeholder="Email"
                                                    ref={e => this.emailField = e} />

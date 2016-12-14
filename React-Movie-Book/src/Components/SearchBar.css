@@ -1,0 +1,27 @@
+
+select{
+    margin: 0 1em 0 1em;
+    height: 2em;
+    color: #ffffff;
+    background-color: #2b3e50;
+    border: none;
+    text-align: center;
+}
+
+#searchText{
+    height: 2em;
+    color: #ffffff;
+    background-color: #2b3e50;
+    border: none;
+    text-align: center;
+}
+
+select:hover, #searchText:hover, #searchText:active{
+    background-color: #22313f;
+}
+
+#searchIcon{
+    width: 12px;
+}
+
+

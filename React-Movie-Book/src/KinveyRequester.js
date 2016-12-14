@@ -9,6 +9,10 @@ let KinveyRequester = (function () {
         'Authorization': "Basic " + btoa(app_id + ":" + app_secret)
     };
 
+    const userCredentialsForConstantRequests = {
+        'Authorization': "Basic " + btoa("ivo:123")
+    };
+
    function loginUser(username, password) {
        return $.ajax({
            method: "POST",
@@ -70,14 +74,10 @@ let KinveyRequester = (function () {
    }
 
    function findAllMoviesWithoutLogin(){
-       let userCredentials = {
-           'Authorization': "Basic " + btoa("ivo:123")
-       };
-
        return $.ajax({
            method: "GET",
            url: base_url + "appdata/" + app_id + '/movies?limit=3&sort={"_kmd.lmt": -1}', //latest modified
-           headers: userCredentials
+           headers: userCredentialsForConstantRequests
        });
    }
    
@@ -85,7 +85,7 @@ let KinveyRequester = (function () {
        return $.ajax({
            method: "GET",
            url: base_url + "appdata/" + app_id + "/movies/" + movieId,
-           headers: getUserAuthHeaders()
+           headers: userCredentialsForConstantRequests
        })
    }
 
@@ -93,6 +93,14 @@ let KinveyRequester = (function () {
         return {
             'Authorization': "Kinvey " + sessionStorage.getItem('authToken'),
         };
+    }
+
+    function searchMovieBySearchBar(searchCategorry, searchText){
+        return $.ajax({
+            method: "GET",
+            url: base_url + "appdata/" + app_id + `/movies?query={"${searchCategorry}":"${searchText}"}`,
+            headers: userCredentialsForConstantRequests
+        });
     }
 
    return {
@@ -103,6 +111,7 @@ let KinveyRequester = (function () {
        deleteMovie,
        findAllMovies,
        findMovieById,
+       searchMovieBySearchBar,
        findAllMoviesWithoutLogin
    }
 })();

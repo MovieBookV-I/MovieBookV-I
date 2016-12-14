@@ -9,6 +9,7 @@ import KinveyRequester from './KinveyRequester';
 
 import NavigationBar from './Components/NavigationBar';
 import Footer from './Components/Footer';
+import SearchBar from './Components/SearchBar';
 
 import HomeView from './Views/HomeView';
 import LoginView from './Views/LoginView';
@@ -46,6 +47,10 @@ export default class App extends Component {
                         <div id="info-box" className="alert-success">Info</div>
                         <div id="error-box" className="alert-danger">Error</div>
                     </div>
+                    <SearchBar
+                        //searchCategorry={this.props.searchCategorryField}
+                        onsubmit={this.searchMovie.bind(this)}
+                    />
                 </header>
 
                 <div id="main">
@@ -179,6 +184,31 @@ export default class App extends Component {
                     onclick={this.moreInfoMovie.bind(this)}
                 />
             );
+        }
+    }
+
+    searchMovie(searchCategorry, searchText){
+        KinveyRequester.searchMovieBySearchBar(searchCategorry, searchText)
+            .then(showSearchedMovie.bind(this));
+
+
+        function showSearchedMovie(movies) {
+            if(movies.length > 0) {
+                this.showInfo("Search complete.");
+                $('#searchText').val('');
+                this.showView(
+                    <MoviesView
+                        movies={movies}
+                        userId={this.state.userId}
+                        onedit={this.loadMovieForEdit.bind(this)}
+                        ondelete={this.loadMovieForDelete.bind(this)}
+                        onclick={this.moreInfoMovie.bind(this)}
+                    />
+                );
+            }else {
+                this.showError("Not match any movies!");
+                $('#searchText').val('');
+            }
         }
     }
 
